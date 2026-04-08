@@ -1,0 +1,12 @@
+com/trailnote/api/CreatorDomainBehaviorTests.class
+com/trailnote/api/ApiControllerCharacterizationTests.class
+com/trailnote/api/ApiArchitectureConformanceTests.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubRouteQueryService.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubCreatorRouteService.class
+com/trailnote/api/RouteDomainBehaviorTests.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubProfileService.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubRouteFavoriteService.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubRouteCommentService.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubSearchService.class
+com/trailnote/api/TrailNoteApiApplicationTests.class
+com/trailnote/api/ApiControllerCharacterizationTests$StubAuthorService.class

@@ -1,0 +1,7 @@
+com/trailnote/common/api/ForbiddenException.class
+com/trailnote/common/api/UnauthorizedException.class
+com/trailnote/common/api/ErrorCode.class
+com/trailnote/common/health/ServiceStatus.class
+com/trailnote/common/api/ApiResponse.class
+com/trailnote/common/api/GlobalExceptionHandler.class
+com/trailnote/common/api/PageResponse.class

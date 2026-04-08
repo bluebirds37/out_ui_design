@@ -1,0 +1,17 @@
+{
+  "name": "out_ui_design",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prototype": "python3 -m http.server 4321 --directory prototype",
+    "prototype:root": "python3 -m http.server 4321",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

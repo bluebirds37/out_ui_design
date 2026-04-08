@@ -1,0 +1,24 @@
+name: TrailNoteApp
+options:
+  minimumXcodeGenVersion: 2.38.0
+  deploymentTarget:
+    iOS: 17.0
+targets:
+  TrailNoteApp:
+    type: application
+    platform: iOS
+    sources:
+      - TrailNoteApp
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.trailnote.ios
+      INFOPLIST_KEY_UILaunchScreen_Generation: true
+      SWIFT_VERSION: 5.9
+    info:
+      path: TrailNoteApp/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: TrailNote
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    scheme:
+      gatherCoverageData: false

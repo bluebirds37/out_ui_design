@@ -1,0 +1,7 @@
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/ApiResponse.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/ErrorCode.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/ForbiddenException.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/GlobalExceptionHandler.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/PageResponse.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/api/UnauthorizedException.java
+/Volumes/ssd/CodeSpaces/out_ui_design/server/common/src/main/java/com/trailnote/common/health/ServiceStatus.java

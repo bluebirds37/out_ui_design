@@ -1,0 +1,305 @@
+# 开发变更记录
+
+## 2026-03-31
+
+- 将 `clients/h5-web` 的 uni-app 首页继续扩展为统一业务工作台，新增本地轨迹记录页与真实 creator 创作台页面
+- 为 uni-app 共享服务层新增真实 creator 接口与类型：`/api/creator/routes`、`/api/creator/drafts/current`、`/api/creator/drafts/save`、`/api/creator/drafts/{routeId}/publish`
+- 为 uni-app 请求层新增 H5 同源优先策略，浏览器开发环境优先请求 `/api/*`，配合 `vite.config.ts` 代理消除本地联调 CORS 问题
+- 为 uni-app 请求层补充历史字段兼容映射，将 `type` 自动归一为 `waypointType`
+- 通过 H5 浏览器真实验证完成登录、进入轨迹记录页、启动记录状态机、结束整理并进入创作台
+- 通过真实接口创建 creator 草稿 `浏览器链路测试草稿`（routeId=1003），并在 H5 创作台页面看到草稿与“我的路线”列表联动更新
+- 为 uni-app H5 入口补充显式 favicon 引用，减少浏览器控制台无关 404 噪音
+- 根据代码审查继续修正 uni-app H5 联调风险：移除 H5 端绝对地址回退、修复“我的”页空收藏重复请求、清空默认账号密码、将 dev server host 调整为 `0.0.0.0`
+- 继续完成旧 H5 到 uni-app 的主页面迁移，新增欢迎页、地图结果页、新增点位页，并接入真实 `/api/search/map`
+- 轨迹记录页已补“新增点位”入口，新增点位页已可把点位类型/标题/说明写回当前记录态，再带入创作台草稿
+- 为 uni-app 新增真实个人资料编辑能力，接入 `PUT /api/me`，并将“我的”页完整迁回当前统一工程
+- 为 uni-app H5 本地联调新增 `debugToken` / `debugScreen` URL 调试入口，可直接跳过登录输入，直达 `profile`、`creator-studio` 等页面做浏览器真点验证
+- 再次完成接口联调复核：`/api/search/map`、`PUT /api/me`、`/api/creator/drafts/current`、`/api/creator/drafts/save`、`/api/creator/drafts/{routeId}/publish` 均已通过真实请求验证
+- 将 uni-app 公共格式化与本地调试参数解析从首页抽离到 `src/shared/formatters.ts`、`src/shared/local-debug.ts`
+- 新增 `scripts/uniapp-h5-api-check.sh`，用于 uni-app H5 重点接口链路回归；已通过 `--mutate` 实跑验证并创建/发布调试草稿 `id=1005`
+
+## 2026-03-26
+
+- 新增正式开发总规划文档 `DEVELOPMENT_MASTER_PLAN.md`
+- 创建正式工程目录骨架：`clients/`、`server/`、`docs/`、`memory/`
+- 发现本机当前缺失 Java Runtime、adb 与完整 Xcode
+- 检测到后台管理前端脚手架位于 `vue-vben-admin/`
+- 初始化 H5 正式工程骨架：`clients/h5-web`
+- 初始化服务端 Maven 多模块骨架：`server/pom.xml`、`server/api`、`server/admin-api`、`server/common`
+- 创建 memory 持久记录文件，作为后续自动加载上下文的本地基础
+- 完成 `clients/h5-web` 依赖安装并构建成功
+- 完成 `vue-vben-admin` 依赖安装
+- 单独构建 `@vben-core/design` 与 `@vben-core/form-ui`，用于打通管理端构建链路
+- 继续补齐 `vue-vben-admin` 工作区预构建包：`@vben-core/popup-ui`、`@vben-core/layout-ui`、`@vben-core/menu-ui`、`@vben-core/tabs-ui`、`@vben-core/composables`、`@vben-core/icons`、`@vben-core/shared`、`@vben-core/typings`
+- 打通 `@vben/web-ele` 正式生产构建并生成 `dist.zip`
+- 将 `server/` 升级为可启动的 Spring Boot 多模块正式骨架，补齐统一响应体、异常处理、健康检查与 mock 登录接口
+- 将 `clients/h5-web` 从初始化占位页升级为可交互的正式移动端原型基线，并再次构建成功
+- 启动 MySQL 服务并完成 `root/root` 初始化
+- 创建业务数据库 `trailnote` 与后台数据库 `trailnote_admin`
+- 新增数据库初始化脚本 `server/sql/init.sql` 并完成执行
+- 扩展首批后端领域模块：路线发现、路线详情、关键点位、后台路线列表
+- 将业务端路线领域切换到真实 MyBatis-Plus 实体、Mapper 与数据库查询
+- 将后台路线列表切换为基于真实 MySQL 的跨库查询
+- 新增 Java 环境接入脚本 `scripts/java-env.sh` 与服务端测试脚本 `scripts/run-server-tests.sh`
+- 下载并接入项目本地 JDK 17 与 Maven 3.9.11 到 `.tools/`
+- 修复 `server/common` 缺失 `spring-boot-starter-validation` 导致的编译失败
+- 修复 `server/api` 缺失 `mybatis-plus-jsqlparser` 导致的分页拦截器编译失败
+- 完成 `server/` 多模块 `mvn test`，当前 `common`、`api`、`admin-api` 全量通过
+- 移除 `admin-api` 无效的 `@MapperScan` 配置，清理启动告警
+
+## 2026-03-27
+
+- 记录本机已安装 `Clash`
+- 扩展业务库初始化脚本，新增 `tn_route_comment` 与 `tn_route_favorite`
+- 为业务 API 新增真实个人资料接口：`/api/me`、`/api/me/favorites`
+- 为业务 API 新增真实路线互动接口：`/api/routes/{routeId}/favorite`、`/api/routes/{routeId}/comments`
+- 将路线详情页收藏态从硬编码切换为真实收藏表判断
+- 重新执行 `server/sql/init.sql` 并完成新表与种子数据初始化
+- 再次执行 `server/` 多模块 `mvn test`，当前仍全量通过
+- 扩展业务库初始化脚本，新增 `tn_user_follow`
+- 为业务 API 新增真实搜索与地图接口：`/api/search`、`/api/search/map`
+- 为业务 API 新增真实作者主页与关注接口：`/api/authors/{authorId}`、`/api/authors/{authorId}/follow`
+- 为后台 API 新增真实概览统计、评论管理与路线状态流转接口
+- 再次执行 `server/` 多模块 `mvn test`，当前仍全量通过
+- 为业务 API 新增真实创作链路接口：`/api/creator/routes`、`/api/creator/drafts/current`、`/api/creator/drafts/{routeId}`、`/api/creator/drafts/save`、`/api/creator/drafts/{routeId}/publish`
+- 创作链路已接入真实路线、点位、媒体表的保存与发布状态流转
+- 再次执行 `server/` 多模块 `mvn test`，当前仍全量通过
+- 为业务 API 的路线摘要与详情补充 `authorId` 字段，便于前端落地真实关注作者交互
+- 将 `clients/h5-web` 从单文件静态原型升级为真实业务联调版，已接入发现页、路线详情、评论发布、路线收藏、作者关注、我的资料、我的收藏
+- 为 H5 正式工程新增 `src/api.ts` 并通过 `vite.config.ts` 将 `/api` 代理到本地 `8080`
+- 为“我的”页面补齐真实编辑资料弹层，并接入 `/api/me` 更新能力
+- 为后台 API 新增真实用户管理接口：`/admin/users`、`/admin/users/{adminUserId}`、`/admin/users/{adminUserId}/status`、`/admin/users/summary`
+- 扩展 `server/sql/init.sql`，为后台管理员增加 `status` 字段与禁用态种子数据
+- 新增后台用户管理控制器单测 `AdminUserControllerTest`，并修复详情用例桩数据错误
+- 修复 `server/sql/init.sql` 的旧库增量升级问题，改为通过 `information_schema` + 动态 SQL 补齐 `tn_admin_user.status`
+- 已重新执行 `mysql -uroot -proot < server/sql/init.sql` 并成功完成本地数据库升级
+- 再次执行 `./scripts/run-server-tests.sh` 与 `clients/h5-web` `npm run build`，当前均通过
+- 将 `vue-vben-admin/apps/web-ele` 概览页接入真实 `/admin/dashboard/overview`
+- 将 `vue-vben-admin/apps/web-ele` 用户管理页接入真实 `/admin/users`、`/admin/users/{id}`、`/admin/users/{id}/status`、`/admin/users/summary`
+- 为 `vue-vben-admin/apps/web-ele` 新增 `src/api/trailnote-admin.ts` 与本地 `VITE_TRAILNOTE_ADMIN_API_URL`
+- 执行 `pnpm -C vue-vben-admin --filter @vben/web-ele run typecheck` 与 `run build`，当前均通过
+- 将 `vue-vben-admin/apps/web-ele` 新增路线管理页与评论管理页，并接入真实 `/admin/routes`、`/admin/routes/{routeId}/status`、`/admin/comments`
+- 为管理端新增路由模块 `trailnote.ts`，将路线管理与评论管理纳入侧边菜单
+- 为 H5 正式工程新增真实搜索页与作者主页，并接入 `/api/search` 与 `/api/authors/{authorId}`
+- 为 H5 路线详情补上跳转作者主页链路，搜索页可直接跳路线详情与作者主页
+- 再次执行 `clients/h5-web` `npm run build`、`vue-vben-admin` `typecheck/build` 与 `./scripts/run-server-tests.sh`，当前均通过
+- 为 `admin-api` 新增 `/admin/routes/{routeId}` 路线审核详情接口，返回基础信息与关键点位列表
+- 为 `vue-vben-admin` 路线管理页新增审核详情抽屉，支持查看路线描述、标签与关键点位后再做状态流转
+- 为 H5 正式工程新增真实地图结果页，并接入 `/api/search/map`
+- 为 H5 正式工程新增创作台页面，并接入 `/api/creator/routes`、`/api/creator/drafts/current`、`/api/creator/drafts/save`、`/api/creator/drafts/{routeId}/publish`
+- 轨迹记录结束态已可直接进入创作整理页，形成“记录 -> 点位 -> 草稿 -> 提交审核”演示链路
+- 再次执行 `clients/h5-web` `npm run build`、`vue-vben-admin` `typecheck/build` 与 `./scripts/run-server-tests.sh`，当前均通过
+- 新增统一开发执行计划文档：`docs/UNIFIED_DEVELOPMENT_EXECUTION_PLAN.md`
+- 新增共享 UI 契约文档：`docs/SHARED_UI_CONTRACT.md`
+- 新增共享接口与数据契约文档：`docs/SHARED_API_DATA_CONTRACT.md`
+- 更新 `docs/README.md`，补充核心基线文档索引
+- 重构 `memory/TODO.md` 为分阶段待办（共享基线 -> 客户端骨架 -> 业务模块 -> 后端补齐 -> 联调测试 -> 发布准备）
+- 在统一规划文档落地时，项目状态为：H5 + server + admin 已有实装，iOS/Android/小程序当时仍为空目录占位
+- 初始化 `clients/ios-native` SwiftUI 源码骨架，新增 App 入口、四主导航根容器、发现/搜索/记录/我的页面占位视图
+- 为 iOS 客户端新增基础设计系统：颜色、字号、间距、圆角、阴影、主按钮与路线卡片组件
+- 新增 `clients/ios-native/project.yml`，为后续生成正式 Xcode 工程预留工程描述文件
+- 更新 `clients/ios-native/README.md`，补充当前状态、目录说明与下一步扩展建议
+- 为 `clients/ios-native/TrailNoteApp/Core` 补充共享状态与契约动作枚举，占位对齐 `idle/loading/success/error`、`idle/recording/paused/ended` 与 `submitForReview` 命名
+- 更新 `memory/TODO.md` 阶段 B 的 iOS 项，明确当前骨架已包含 App、Feature、DesignSystem 与共享组件基础
+- 尝试启动 `clients/android-native` 前先统一补齐 Android 本机环境
+- 已通过 Homebrew 安装 `android-platform-tools`、`android-commandlinetools`、`kotlin`
+- 已接受 Android SDK licenses，并安装 `platform-tools`、`platforms;android-35`、`build-tools;35.0.0`
+- 已确认 `gradle` 9.4.1 可用，Android 基础命令链路已打通
+- 初始化 `clients/android-native` Compose 工程骨架，新增根构建脚本、`app` 模块、四主导航与发现/搜索/记录/我的页面占位视图
+- 为 Android 客户端新增基础设计系统：颜色、间距、圆角、排版、主按钮与路线卡片组件
+- 更新 `clients/android-native/README.md`，同步当前状态、目录结构与下一步扩展建议
+- 已生成 `clients/android-native` Gradle wrapper（8.10.2）
+- 在 `JAVA_HOME=/opt/homebrew/opt/openjdk@17/...` 且走 Clash 代理 `127.0.0.1:7897` 的环境下，`clients/android-native` `./gradlew assembleDebug` 已通过
+- 检测到本机已安装微信开发者工具目录：`/Users/blue/Library/Application Support/微信开发者工具`
+- 初始化 `clients/wechat-miniapp` 原生小程序骨架，新增 `project.config.json`、`sitemap.json`、`miniprogram/` 根配置与四主页面占位
+- 为小程序端新增共享样式变量、品牌 Hero 卡片、主按钮和发现/搜索/记录/我的页面基础结构
+- 更新 `clients/wechat-miniapp/README.md`，同步当前状态、目录结构与下一步开发建议
+- 将 `clients/h5-web` 的共享路由类型抽离到 `src/app/routes.ts`
+- 将 H5 正式工程从单体 `App.vue` 中拆出 `DiscoverPage`、`SearchPage`、`MapResultsPage`、`RouteDetailPage`
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过，`App.vue` 已从 1691 行降到 1325 行
+- 将 H5 正式工程继续拆出 `AuthorProfilePage`、`CreatorStudioPage`、`ProfilePage`
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过，`App.vue` 已进一步降到 1114 行
+- 将 H5 正式工程继续拆出 `RecordLivePage`、`AddWaypointPage`，并新增 `PrototypeDrawer`、`AppModalHost` 组件承接页面切换抽屉与全局弹层
+- 为 H5 新增共享录制状态类型 `src/types/recording.ts`，用于页面与宿主组件统一状态定义
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过，`App.vue` 已进一步降到 943 行
+- 将 H5 正式工程继续拆出 `WelcomePage`、`LoginPage`，登录表单校验与欢迎页跳转逻辑改为由 `App.vue` 编排
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过，`App.vue` 已进一步降到 914 行
+- 为 H5 新增 `src/composables/usePrototypeData.ts`，集中承接 discover/detail/profile/search/map/creator 等真实接口状态与动作
+- 为 H5 新增 `src/composables/usePrototypeLocalState.ts`，集中承接登录表单、录制状态、点位表单、路由切换、副作用 Toast 与弹层抽屉状态
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过，`App.vue` 已进一步降到 427 行
+- 新增共享网络层文档 `docs/SHARED_NETWORK_LAYER_CONTRACT.md`，统一多端请求封装、query、超时、重试、认证注入与错误归一口径
+- 为 H5 新增 `src/lib/http.ts` 作为统一 `HttpClient`，支持 base URL、query builder、JSON body、超时、GET 轻量重试、统一错误对象与 token 注入 hook
+- 将 `clients/h5-web/src/api.ts` 切换为基于 `HttpClient` 的 service 封装，不再在业务 service 中手写 `fetch` 与 query 拼接
+- 更新 `docs/README.md`，补充共享网络层契约文档入口
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过
+- 为 Android 客户端新增 `core/network` 骨架：`ApiEnvelope`、`PageEnvelope`、`RequestOptions`、`NetworkError`、`TrailNoteHttpClient`
+- 为 Android 客户端新增 `data/service` 目录，补充 `RouteService`、`ProfileService` 与内存版 `InMemoryRouteService` / `InMemoryProfileService`
+- 为 Android `AndroidManifest.xml` 增加 `INTERNET` 权限，并更新 `clients/android-native/README.md` 说明当前网络层进展
+- 在 Clash 代理 `127.0.0.1:7897` 与 Java 17 环境下再次执行 `clients/android-native` `./gradlew assembleDebug`，当前构建通过
+- 为小程序客户端新增 `miniprogram/config/env.js`、`miniprogram/utils/request.js` 与 `miniprogram/services/*`，落地统一网络层请求封装与业务 service 入口
+- 更新 `clients/wechat-miniapp/miniprogram/app.js` 与 `clients/wechat-miniapp/README.md`，补充网络层全局配置与目录说明
+- 通过 `node --check` 校验小程序新增 `env/request/services` 文件，当前语法通过
+- 为 iOS 客户端新增 `Core/Network` 与 `Core/Services`，补充 `TrailNetworkClient`、请求模型、错误模型、service 协议与内存版服务实现
+- 更新 `clients/ios-native/README.md`，同步 iOS 当前网络层进展；使用 `xcrun swiftc -parse` 校验新增 Swift 文件语法，当前通过
+- 将 Android `features/discover/DiscoverScreen.kt` 切到 `InMemoryRouteService` 取数，形成第一条实际消费统一 service 层的页面链路
+- 在 Clash 代理 `127.0.0.1:7897` 与 Java 17 环境下再次执行 `clients/android-native` `./gradlew assembleDebug`，当前构建通过
+- 将 Android `features/search/SearchScreen.kt` 与 `features/mine/MineScreen.kt` 切到 `InMemoryRouteService` / `InMemoryProfileService`，统一由 service 层提供页面数据
+- 将小程序 `pages/discover/index.js` 与 `pages/mine/index.js` 切到 `services/route-service.js` / `services/profile-service.js`，统一由请求封装后的 service 入口取数
+- 再次执行 Android `./gradlew assembleDebug`，当前构建通过；并通过 `node --check` 校验小程序页面脚本语法，当前通过
+- 将 iOS `DiscoverHomeView.swift`、`MineHomeView.swift`、`SearchHomeView.swift` 切到 `InMemoryTrailRouteService` / `InMemoryTrailProfileService`，统一由 service 层提供页面数据
+- 为小程序 `pages/search/index.js` 接入 `services/route-service.js`，并为 discover / mine / search 页面补齐 `loading/error` 视图分支
+- 为 H5 新增 `src/app/formatters.ts`，将 `formatDuration`、`difficultyLabel`、`formatDate` 从 `App.vue` 中抽离
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过；再次执行 iOS `xcrun swiftc -parse` 与小程序 `node --check`，当前均通过
+- 为 Android 新增 `TrailEnvironment`、`TrailServiceRegistry` 与 `RemoteRouteService` / `RemoteProfileService`，并通过 `BuildConfig.TRAILNOTE_USE_MOCK_DATA` 预留 mock / remote 数据源切换
+- 更新 Android 发现 / 搜索 / 我的页面，从直接 new 内存 service 改为通过 `TrailServiceRegistry` 统一取数；再次执行 `clients/android-native` `./gradlew assembleDebug`，当前通过
+- 为 iOS 新增 `Core/Config/TrailEnvironment.swift`、`TrailServiceRegistry.swift` 与 `RemoteTrailNoteServices.swift`，补齐 mock / remote 数据源切换基础
+- 更新 iOS 发现 / 搜索 / 我的页面，从直接使用内存 service 改为通过 `TrailServiceRegistry` 统一取数；再次执行 `xcrun swiftc -parse`，当前通过
+- 启动本地业务端 `server/api` 前，先执行 `mvn -pl common,api -am install -DskipTests`，补齐 `common`/`api` 本地快照依赖
+- 在 `server/api` 模块内成功启动 Spring Boot 业务端，确认 `http://127.0.0.1:8080` 在线
+- 通过 `curl` 验证 `/api/public/health`、`/api/routes/featured`、`/api/search?q=山脊`、`/api/me` 均返回成功，且结构符合当前多端 service DTO 预期
+- 将 Android `TRAILNOTE_USE_MOCK_DATA` 默认值切换为 `false`，将 iOS `TrailEnvironment.useMockData` 默认值切换为 `false`，将小程序默认 API 地址切换为 `http://127.0.0.1:8080`
+- 再次执行 Android `./gradlew assembleDebug`、iOS `xcrun swiftc -parse` 与小程序 `node --check`，当前均通过
+- 为 Android 发现 / 搜索 / 我的页面补齐页面级 `loading / error / success` 远程状态机，远程请求改为在协程 IO 线程执行，避免直接在组合阶段发起阻塞网络访问
+- 为 iOS 发现 / 搜索 / 我的页面补齐 `isLoading` 与 `errorMessage` 状态，并新增统一 `TNStatusCard` 用于展示远程加载/失败反馈
+- 再次执行 Android `./gradlew assembleDebug` 与 iOS `xcrun swiftc -parse`，当前通过；再次用 `curl` 探测业务端健康、发现、搜索、我的接口，当前均返回成功
+- 修复 iOS 真机构建前的 SwiftUI 编译问题：将 `TNStatusCard` 从发现页私有实现提取为共享设计系统组件，并统一 `message` 字段命名，避免 `body` 命名冲突和跨文件访问失败
+- 新增 iOS 共享格式化工具 `TNFormatters.swift`，将距离/时长展示格式从页面文件提升到设计系统层，消除跨页面访问级别问题
+- 使用 `xcodegen generate` 重新生成 `clients/ios-native/TrailNoteApp.xcodeproj` 后，再次执行 `xcodebuild ... build`，当前 iOS 模拟器 Debug 构建通过
+- 已将 `TrailNoteApp.app` 安装到 `iPhone 17 Pro` 模拟器（UDID `5D58B478-3AE4-443B-863C-CAC725DD9021`），并通过 `simctl launch` 成功启动，返回进程 PID `55134`
+- 已调用本机微信开发者工具 `/Volumes/ssd/Applications/wechatwebdevtools.app` 打开 `clients/wechat-miniapp` 项目，当前相关进程已在运行
+- 为 iOS 新增路线详情与作者主页真实交互链路，补齐 `routeDetail`、`toggleRouteFavorite`、`routeComments`、`addRouteComment`、`authorProfile`、`toggleAuthorFollow` 的 DTO、service 与页面实现
+- 为 Android 新增路线详情与作者主页真实交互链路，补齐详情 DTO、评论/收藏/关注 service、详情页面与作者页面，并从发现/搜索页增加进入口
+- 为小程序新增 `pages/route-detail`、`pages/author-profile`，补齐 `services/route-service.js` 与 `services/profile-service.js` 的收藏、评论、关注接口封装，并从发现/搜索页增加进入口
+- 再次执行 Android `./gradlew assembleDebug`，当前构建通过
+- 再次执行 iOS `xcodebuild ... build`，当前模拟器 Debug 构建通过，并已重新安装启动成功，`simctl launch` 返回进程 PID `66028`
+- 再次执行小程序 `node --check` 覆盖 service 与新页面脚本，当前语法通过；并再次调用微信开发者工具打开当前项目
+- 通过 `curl` 再次验证真实交互接口：`/api/routes/1001/favorite` 与 `/api/routes/1001/comments` 写入成功，`/api/authors/1001/follow` 返回预期业务保护 `cannot follow yourself`
+- 为 Android 新增 `app/src/main/res/xml/network_security_config.xml` 并在 `AndroidManifest.xml` 开启 `usesCleartextTraffic` / `networkSecurityConfig`，修复模拟器访问 `http://10.0.2.2:8080` 时的明文流量拦截
+- 已在 Android 模拟器 `TrailNote_API35` 上完成 `app-debug.apk` 安装与 `com.trailnote.android/.MainActivity` 真实拉起
+- 已在 Android 设备级真实验证发现页加载成功，并进入路线详情页完成收藏切换：`routeId=1001` 从 `已收藏 · 3401` 切换为 `收藏 · 3400`，后端接口返回同步变更
+- 已在 Android 设备级真实验证评论发布：`routeId=1001` 成功发布评论 `android-device-check-20260329`，后端 `/api/routes/1001/comments` 返回新增记录 `id=4004`
+- 已在 Android 设备级真实验证作者关注切换：`authorId=1002` 在作者主页内从 `已关注 · 粉丝 1` 切换为 `关注作者 · 粉丝 0`，随后恢复为 `已关注 · 粉丝 1`
+- 为微信小程序 `project.config.json` 新增 `urlCheck: false`，降低开发者工具本地联调时的合法域名校验阻塞
+- 重构小程序环境配置：`miniprogram/config/env.js` 与 `utils/request.js` 现支持多候选 API 基地址回退，并对“合法域名未配置 / 本地接口不可达”给出更明确的错误提示
+- 将小程序 `App.globalData` 与新的环境配置对齐，统一暴露 `apiBaseUrl`、`apiBaseUrls` 与 `requestTimeoutMs`
+- 收敛小程序发现 / 搜索 / 我的 / 路线详情 / 作者主页视觉结构，新增共享路线卡片、封面占位、资料统计块与更接近共享契约的按钮/卡片层级
+- 再次执行小程序相关 `node --check` 与 `project.config.json` 解析校验，当前均通过
+- 为 iOS 新增 `TNShowcaseComponents.swift`，抽出统一的 `TNSectionHeading`、`TNStatCard`、`TNRouteShowcaseCard`，并扩展 `TNHeroHeader` 支持说明文案
+- 为 Android 新增 `TrailShowcaseComponents.kt`，抽出统一的 Hero 卡片、章节标题、统计卡片与路线展示卡片组件
+- 收敛 iOS `DiscoverHomeView` 与 `AuthorProfileView` 的视觉骨架，统一为 Hero 区 + 路线展示卡片 + 主按钮 / 统计区结构
+- 收敛 Android `DiscoverScreen` 与 `AuthorProfileScreen` 的视觉骨架，统一为 Hero 区 + 路线展示卡片 + 主按钮 / 统计区结构
+- 已重新执行 `xcodegen generate` 并再次执行 iOS `xcodebuild ... build`，当前模拟器 Debug 构建通过
+- 已再次执行 Android `./gradlew assembleDebug`，当前构建通过
+- 已重新安装并启动 Android 调试包与 iOS 模拟器 App，新的发现页统一骨架已实际运行到设备
+
+## 2026-03-30
+
+- 将 H5 `DiscoverPage`、`AuthorProfilePage`、`SearchPage` 继续向共享 UI 契约收敛，移除“卡片列表”和“独立按钮列表”分裂布局，改为卡片内统一 CTA 结构
+- 为 H5 搜索页补齐统一 Hero 区、结果分组说明和路线 / 作者展示卡片，避免与 iOS / Android / 小程序出现两套视觉节奏
+- 为 H5 搜索结果接入统一 `difficultyLabel` 文案映射，清理原始 `INTERMEDIATE` 等枚举直接暴露到 UI 的问题
+- 为 H5 增加 `public/favicon.svg` 并在 `index.html` 注入 favicon 引用，补齐基础浏览器资源
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过
+- 通过 Homebrew 安装 `google-chrome`，补齐 Playwright 浏览器自动化所需本机浏览器环境
+- 以 Playwright + Chrome 对 H5 执行浏览器级真实验证：发现页、搜索页、路线详情页、作者主页均可实际打开，控制台在全新会话下无运行时错误
+- 通过 H5 浏览器真实交互验证 `routeId=1001` 收藏切换成功，页面由 `收藏 · 3400` 更新为 `已收藏 · 3401`，后端接口同步返回最新收藏态
+- 通过 H5 浏览器真实交互验证 `routeId=1001` 评论发布成功，评论 `h5-browser-check-20260330` 已写入后端并出现在最新评论列表中，评论数由 `218` 更新为 `219`
+- 通过 H5 浏览器真实交互验证非本人作者关注成功：从 `routeId=1002` 详情页将 `authorId=1002` 从 `未关注 / 粉丝 0` 切换为 `已关注 / 粉丝 1`
+- 通过 H5 浏览器真实交互验证作者主页取消关注成功：`authorId=1002` 已从 `已关注 / 粉丝 1` 恢复为 `未关注 / 粉丝 0`
+- 通过 H5 浏览器真实交互验证本人作者保护提示：在 `routeId=1001` 详情页点击作者关注时，页面展示业务错误 `cannot follow yourself`
+- 产出新的 H5 浏览器验证截图：`.playwright-cli/page-2026-03-30T00-37-27-659Z.png`、`.playwright-cli/page-2026-03-30T00-38-02-614Z.png`、`.playwright-cli/page-2026-03-30T00-45-53-230Z.png`
+- 继续收敛小程序 `search` / `route-detail` / `author-profile` 页面结构，使其向 H5 / iOS / Android 的 Hero / Stat Card / Route Showcase 视觉顺序对齐
+- 修正小程序 `route-detail` 页第二按钮的行为偏差，当前已从“直接跳作者主页”改为真实执行关注切换，同时保留作者信息卡进入作者主页
+- 补齐小程序搜索页三段结果结构：路线、作者、点位现在可在同页按分组展示，不再只保留单一路线卡片
+- 补齐小程序作者主页统计区与路线卡片 CTA 结构，并为作者路线增加时长格式化字段
+- 扩展小程序共享样式 `app.wxss`，新增 section subtitle、stat grid、route footer、input card 等样式块，用于继续缩小与 H5 / 原生端的视觉差距
+- 再次执行小程序页面脚本 `node --check`，当前 `discover/search/route-detail/author-profile` 语法均通过
+- 再次通过微信开发者工具 CLI 打开 `clients/wechat-miniapp` 工程，当前 IDE HTTP 服务仍正常位于 `http://127.0.0.1:9420`
+- 通过接口复核确认小程序当前联调基线数据仍符合页面结构预期：`/api/routes/1002` 返回 `authorId=1002`、点位 1 个；`/api/authors/1002` 返回 `followed=false`、`followerCount=0`
+- 收敛 H5 `MapResultsPage` 底部导航，已从纯文字按钮改回和发现/搜索页一致的图标导航骨架
+- 收敛 Android App 壳层导航：将详情/作者页顶部返回条从朴素 `TextButton` 改为居中标题 TopAppBar，并统一底部 NavigationBar 选中态颜色
+- 再次执行 `clients/h5-web` `npm run build`，当前通过；并通过 Playwright 实际打开 H5 地图页确认新的底部导航已真实渲染
+- 再次执行 Android `./gradlew assembleDebug`，当前通过；已将最新调试包重新安装启动到模拟器，产出验证截图 `tmp/android-shell-topbar-pass3.png`
+- 为 iOS `TrailProfileServicing` 新增 `myFavorites(page:pageSize:)`，并在 `RemoteTrailProfileService` / `InMemoryTrailProfileService` 接入 `/api/me/favorites`
+- 为 Android `ProfileService` 新增 `myFavorites(page,pageSize)`，并在 `RemoteProfileService` / `InMemoryProfileService` 接入 `/api/me/favorites`
+- 将 iOS `MineHomeView` 收敛为“资料摘要 + 2x2 统计 + 我的收藏路线卡片 + 详情 CTA”结构，和 H5 / 小程序保持统一信息顺序
+- 将 Android `MineScreen` 收敛为“资料摘要 + 2x2 统计 + 我的收藏路线卡片 + 详情 CTA”结构，并接通进入路线详情回调
+- Android 设备级验证中定位到 Mine 页崩溃根因：`LazyColumn` 内嵌 `LazyVerticalGrid` 触发 Compose 无限高度约束异常
+- 已将 Android `MineScreen` 与 `AuthorProfileScreen` 的统计区改为非滚动静态双列布局，并为 `TrailStatCard` 增加 `modifier` 参数以支持等宽排布
+- 再次执行 Android `./gradlew assembleDebug`，当前通过；重新安装启动并切到“我的”页后，模拟器运行稳定，产出验证截图 `tmp/android-mine-pass6.png` 与层级文件 `tmp/android-mine-pass6.xml`
+- 再次执行 iOS `xcodebuild ... build`，当前模拟器 Debug 构建通过；已重新安装并启动 App，`simctl launch` 返回进程 PID `80571`
+- 再次执行小程序 `node --check` 覆盖全部 `miniprogram/**/*.js`，当前语法通过
+- 再次通过微信开发者工具 CLI 执行 `auto`，当前 `clients/wechat-miniapp` 工程可被 IDE 正常接管，未在本轮终端校验中复现新的 CLI 级错误
+- 已重新启动 Spring Boot 业务端与管理端，当前 `http://127.0.0.1:8080`、`http://127.0.0.1:8081` 健康检查均返回 `UP`
+- 已通过真实接口回归业务端登录、我的资料、我的收藏、路线评论列表；已通过真实接口回归管理端登录与 `/admin/dashboard/overview`
+- 通过 H5 浏览器级真实联调再次验证收藏、评论发布、关注切换：
+  - `routeId=1001` 收藏由 `已收藏 · 3401` 切换为 `收藏 · 3400`
+  - `routeId=1001` 新评论 `full-stack-debug-20260330` 已写入后端，评论总数更新为 `220`
+  - `authorId=1002` 已从未关注切换为已关注，粉丝数由 `0` 更新为 `1`
+- 修复 H5 原型导航中的联调误导问题：点击左侧/抽屉“路线详情”“作者主页”时，不再进入空白壳页，而是自动载入默认真实 route / author 数据
+- 收到微信开发者工具游客模式日志后，确认 `SharedArrayBuffer` / `webapi_getwxaasyncsecinfo:fail` 主要属于 DevTools / 无 AppID 噪音，当前优先转向排查真实网络 timeout 链路
+- 调整小程序环境地址策略：在 DevTools / 游客模式下优先使用局域网地址 `http://192.168.0.174:8080`，其次回退 `http://127.0.0.1:8080`
+- 调整小程序请求超时策略：DevTools / 游客模式下默认单次请求超时从 `8000ms` 收敛为 `3500ms`，减少错误地址导致的长时间等待
+- 为小程序请求层新增启动日志、请求尝试日志与失败地址回显，页面错误文案现在会附带已尝试的 base URL，便于开发者工具内定位 timeout 卡点
+- 再次执行小程序 `node --check` 覆盖 `app.js`、`config/env.js`、`utils/request.js`，当前语法通过
+- 再次通过微信开发者工具 CLI `auto` 接管 `clients/wechat-miniapp` 工程，当前继续返回 `AppID: touristappid`
+- 再次执行 `scripts/fullstack-smoke-check.sh`，业务端 / 管理端健康、登录、我的资料、搜索、收藏、评论、管理概览均通过
+- 开发范围已按最新要求收敛到 H5，当前暂不继续推进小程序 / iOS / Android 端
+- H5 登录链路已从本地假提交切换为真实 `/api/auth/login`，登录成功后会写入 `trailnote_access_token` 并继续拉取发现页、个人页、搜索与地图结果
+- H5 启动流程已改为按本地 token 自动恢复登录态；无 token 时默认进入登录页，有 token 时直接恢复到真实数据态
+- H5 登录页已补真实登录中状态与后端错误提示
+- 再次执行 `clients/h5-web` `npm run build`，当前构建通过
+- 再次通过 `curl` 验证业务端 `/api/auth/login`，当前返回 `mock-token-for-bootstrap`
+- 开发范围已再次调整为 iOS / Android / H5 三端同步推进，当前明确排除小程序端
+- 已为 iOS / Android / H5 三端统一真实登录基线：统一使用 `/api/auth/login`、统一本地 token key `trailnote_access_token`、统一演示账号 `hiker@trailnote.app / 123456`
+- iOS 已补 `TrailAuthServicing`、远程/内存登录 service、`TrailSessionStore` 与根视图登录壳；启动时可按本地 token 恢复会话
+- Android 已补 `AuthService`、远程/内存登录 service、`TrailSessionStore`、Compose 登录页与应用入口登录守卫；启动时可按本地 token 恢复会话
+- H5 登录默认密码已补为 `123456`，方便和原生端统一做真实登录验证
+- 再次执行 `clients/android-native` `./gradlew assembleDebug`，当前构建通过
+- 再次执行 iOS `xcodebuild ... build`，当前模拟器 Debug 构建通过
+- 已重新安装并启动 iOS 模拟器 App，`simctl launch` 返回进程 PID `11833`
+- 已重新安装并启动 Android 模拟器 App，`adb install -r` 与 `monkey` 启动通过
+- 已产出新的原生端登录页运行截图：`tmp/ios-login-sync-20260330.png`、`tmp/android-login-sync-20260330.png`
+- 已为 H5 / iOS / Android 三端补齐退出登录入口：H5 位于“我的”页头部和底部，iOS / Android 位于“我的”页底部
+- H5 退出登录当前会清空 `trailnote_access_token` 并返回登录页
+- iOS 退出登录当前会清空 `UserDefaults` 中的 `trailnote_access_token` 并返回登录页
+- Android 退出登录当前会清空 `SharedPreferences` 中的 `trailnote_access_token` 并返回 Compose 登录页
+- 再次执行 H5 `npm run build`、Android `./gradlew assembleDebug`、iOS `xcodebuild ... build`，当前三端构建均通过
+- 已重新安装并启动最新 iOS / Android 包，当前退出登录版本已进入模拟器运行态
+- 已产出新的原生端会话版本截图：`tmp/ios-session-pass-20260330.png`、`tmp/android-session-pass-20260330.png`
+- 已为 H5 网络层补齐 `401 / UNAUTHORIZED` 回调入口，后续任一接口返回未授权时会清空会话并回到登录页
+- 已为 iOS 远程 service 补齐未授权通知：当接口返回 `401 / UNAUTHORIZED` 时会通过 `NotificationCenter` 触发统一退登录
+- 已为 Android session store 补齐可观察 token 状态与未授权清理逻辑：当接口返回 `401 / UNAUTHORIZED` 时会清空 token 并让根 Compose 入口回到登录页
+- 再次执行 H5 `npm run build`、Android `./gradlew assembleDebug`、iOS `xcodebuild ... build`，当前三端构建均通过
+- 已按最新决策删除原生 `clients/wechat-miniapp` 目录，停止继续维护原生微信小程序端
+- 已将 `clients/h5-web` 从原 Vite H5 工程重构为 uni-app Vue3/Vite 工程，并保留旧 H5 源码备份目录 `src-legacy-vite-web/`
+- 新 uni-app 工程当前已补齐 `pages.json`、`manifest.json`、`uni.scss`、`main.ts`、`App.vue` 与统一 `shared/http.ts`、`shared/api.ts`、`shared/session.ts`
+- 新 uni-app 首版已迁入统一登录、发现、搜索、路线详情、作者主页、我的收藏链路，当前使用同一套业务后端接口 `/api/auth/login`、`/api/routes/*`、`/api/search`、`/api/authors/*`、`/api/me*`
+- 已按 uni-app 官方 Vite 预设重建 `clients/h5-web/package.json` 与脚本，当前支持：
+  - `npm run dev:h5`
+  - `npm run build:h5`
+  - `npm run dev:mp-weixin`
+  - `npm run build:mp-weixin`
+- 已完成 `clients/h5-web` 依赖重装并通过 `npm run type-check`
+- 已完成 uni-app H5 构建，产物位于 `clients/h5-web/dist/build/h5/`
+- 已完成 uni-app 微信小程序构建，产物位于 `clients/h5-web/dist/build/mp-weixin/`
+- 再次执行 `clients/h5-web` `npm run build`，当前通过
+- 已通过浏览器再次验证 H5 左侧“路线详情”“作者主页”默认入口可直接打开真实数据页面，不再出现无选中实体时的空白内容
+- 新增联调烟测脚本 `scripts/fullstack-smoke-check.sh`，当前可自动验证业务端健康、登录、我的资料、搜索、我的收藏、评论列表，以及管理端健康、登录、概览统计
+- 已执行 `scripts/fullstack-smoke-check.sh`，当前脚本全量通过
+- 小程序继续收敛模板运行稳定性：将 `discover/search/author-profile/mine` 中模板内联 `index % 2 === 0` 封面 class 计算下沉到页面 JS 预处理，降低开发者工具模板表达式兼容风险
+- 再次执行小程序 `node --check` 与微信开发者工具 CLI `auto`，当前通过
+- 已重新启动并联通业务后端 `:8080`、管理后端 `:8081`、H5 前端 `:4173` 与管理前端 `:5777`
+- 已为 `vue-vben-admin/apps/web-ele` 补本地联调适配：登录改走 `/admin/auth/login`、开发代理统一走 `/trailnote-admin -> :8081`、移除登录拖拽验证码阻断，并以本地静态用户/权限/菜单兜底完成真实数据页验证
+- 已通过浏览器与 Playwright 完成真实联调烟测：H5 的欢迎页、发现页、路线详情页、作者主页，以及管理端的概览页、路线管理、评论管理、用户管理均已验证可读真实数据
+- 已完成关键写操作验证并恢复大部分状态：管理端路线 `1003` 状态流转、用户 `support_admin` 启停用、H5 路线 `1001` 收藏切换、作者 `1002` 关注切换
+- 当前保留一条联调副作用数据：路线 `1001` 新增评论 `biz-write-check-20260402201537`
+- 已为 `admin-api` 补齐管理端真实会话信息接口：`/admin/auth/profile`、`/admin/auth/access-codes`、`/admin/auth/menus`
+- `vue-vben-admin/apps/web-ele` 当前已移除本地静态用户/权限/菜单兜底，登录后改为走上述真实接口返回
+- 当前管理端权限与菜单会按 `tn_admin_user.role_code` 做后端映射：`SUPER_ADMIN` 可见概览、内容管理、用户管理，`OPERATOR` 可见概览与内容管理
+- 已将管理端“当前管理员识别”从用户名记忆升级为真实 `Bearer token` 会话识别；未带 token 请求 `/admin/auth/profile` 当前会返回 `UNAUTHORIZED`
+- 已新增后台会话表 `trailnote_admin.tn_admin_session`，登录成功后会写入真实 access token 会话记录，登出会注销对应会话
+- 已新增后台角色与菜单权限表：`tn_admin_role`、`tn_admin_permission`、`tn_admin_role_permission`、`tn_admin_menu`、`tn_admin_role_menu`
+- 已将管理端权限码与菜单从代码内写死映射切换为数据库查询驱动；当前 `SUPER_ADMIN` / `OPERATOR` 的菜单与权限已由种子数据初始化
+- 已更新 `scripts/fullstack-smoke-check.sh`，管理端概览检查改为先登录获取 token，再携带 `Authorization` 调用受保护接口
+- 已为管理端后台接口补服务端权限校验：`/admin/dashboard/**` 需 `dashboard:view`，`/admin/users/**` 需 `user:view`，`/admin/routes/**` 需 `route:view`，`/admin/comments/**` 需 `comment:view`
+- 已新增统一服务端权限校验服务 `AdminAuthorizationService` 与 `FORBIDDEN` 错误码，后续即使绕过前端菜单直接调用接口，也会按权限码拦截

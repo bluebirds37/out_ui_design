@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		105F4181B0B0571091C41895 /* RecordHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108447A126C2BACCA7ECDAA3 /* RecordHomeView.swift */; };
+		173296A3EDB57F6D8A2E2751 /* TrailNoteTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8813F63AB85CB0BBBA2A005A /* TrailNoteTab.swift */; };
+		27369F147BBD6773B5920E6C /* AuthorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9C680161C6E53B74D0D29B /* AuthorProfileView.swift */; };
+		30DD90081FFB1D53A20873A8 /* Contracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3D1EADE2A6C8DCFEABDB1 /* Contracts.swift */; };
+		631A2DB0276E0A6F681C2A25 /* DiscoverHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AFE2B7AD992D7C0D79E81 /* DiscoverHomeView.swift */; };
+		67213C17A211B7D95A68A58D /* TNShowcaseComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407005A154BF80011216E55 /* TNShowcaseComponents.swift */; };
+		72CD2EE5F30EE9AA863889A1 /* TNStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D9414ADC88E26EE582C86 /* TNStatusCard.swift */; };
+		799188D353FCFB3C8C9FE42E /* MineHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E71CE445078DD84BBD4B4 /* MineHomeView.swift */; };
+		7CC2D5E586846095C98DCCA2 /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD83A104C6652C01E1C5313 /* NetworkClientError.swift */; };
+		7FF558D73D783A77F9E2B210 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DD377220E2365673B4E64 /* NetworkRequest.swift */; };
+		8DAAB02290A111B5E9889152 /* SearchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6FD4873F9C69CB32D7342 /* SearchHomeView.swift */; };
+		905ACAB6C396548982D301FD /* ApiEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075A1270A6B089998E2ECB /* ApiEnvelope.swift */; };
+		A45F9C85EBAED071871FBB7F /* TrailNoteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A98DCF9C38869A13D2DCC /* TrailNoteServices.swift */; };
+		AD34DA45C9C372B48B282AAA /* TNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A932008C5AE7A8A320564A2 /* TNColor.swift */; };
+		B6449670B8CA9FB2557A4A57 /* TrailServiceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5411DEC62E8B1694D996FA5 /* TrailServiceModels.swift */; };
+		B66D103EFE2BFF4D6E3E7FAB /* TNHeroHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315E907ACB16A9020840388 /* TNHeroHeader.swift */; };
+		C1E4BA8DD9B0C4D9624EEB14 /* TNFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79F4F518C9F5CD5FA025A58 /* TNFormatters.swift */; };
+		C3733FB35E4C7CC245DC9C74 /* TrailNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44916D78E6E21E6E3E7C7C /* TrailNetworkClient.swift */; };
+		C86B14CB4F17E566FE4BB8E6 /* RemoteTrailNoteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BAC18A96FD36F3AE37A6ED /* RemoteTrailNoteServices.swift */; };
+		CA9876A13AB6AB254D22DF75 /* TNMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606471000024E7A077E55922 /* TNMetrics.swift */; };
+		CB07BCCD34E8441BB993E80A /* TNPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CC8A5AA8B35DE50B752841 /* TNPrimaryButton.swift */; };
+		CD2AF762FCC99E09285D8464 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9631DC57FCC8DD1437AEE6E0 /* README.md */; };
+		D0A8CAC0E5B23D4393528A62 /* TrailNoteRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376848D36641B78865B6B068 /* TrailNoteRootView.swift */; };
+		D5401ECD36E350D13F20C24D /* TNRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7D50E3AF24F32C87378E8D /* TNRouteCard.swift */; };
+		D5AC30E562FD8CCEF71FFC38 /* TNTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE04924E9CBBCF7D1F6EBC4 /* TNTypography.swift */; };
+		DADD0D01975A280F67618989 /* TrailServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52C2AA976FA95891A73B6E /* TrailServiceRegistry.swift */; };
+		F79535FEAA4977B30BE79896 /* TrailEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D48BA7C2E77FCB8BE9E80 /* TrailEnvironment.swift */; };
+		F81FD7DB26DB5B745C0A482C /* InMemoryTrailNoteServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFABA143DE268AE1AD35A6E /* InMemoryTrailNoteServices.swift */; };
+		F8296EA0F1BFAB8381296196 /* TrailNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF5F35D31931421172B3DB6 /* TrailNoteApp.swift */; };
+		FA56D30AAF467704A51FEC78 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25C08151B441C7D9738FE3 /* RouteDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		108447A126C2BACCA7ECDAA3 /* RecordHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHomeView.swift; sourceTree = "<group>"; };
+		1D7D48BA7C2E77FCB8BE9E80 /* TrailEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailEnvironment.swift; sourceTree = "<group>"; };
+		2F7D50E3AF24F32C87378E8D /* TNRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNRouteCard.swift; sourceTree = "<group>"; };
+		360E71CE445078DD84BBD4B4 /* MineHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeView.swift; sourceTree = "<group>"; };
+		36CC8A5AA8B35DE50B752841 /* TNPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNPrimaryButton.swift; sourceTree = "<group>"; };
+		376848D36641B78865B6B068 /* TrailNoteRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailNoteRootView.swift; sourceTree = "<group>"; };
+		3A52C2AA976FA95891A73B6E /* TrailServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailServiceRegistry.swift; sourceTree = "<group>"; };
+		3D79B55667E59D4983E73032 /* TrailNoteApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TrailNoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A2A98DCF9C38869A13D2DCC /* TrailNoteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailNoteServices.swift; sourceTree = "<group>"; };
+		606471000024E7A077E55922 /* TNMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNMetrics.swift; sourceTree = "<group>"; };
+		6CF5F35D31931421172B3DB6 /* TrailNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailNoteApp.swift; sourceTree = "<group>"; };
+		6DA3D1EADE2A6C8DCFEABDB1 /* Contracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contracts.swift; sourceTree = "<group>"; };
+		6F1AFE2B7AD992D7C0D79E81 /* DiscoverHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHomeView.swift; sourceTree = "<group>"; };
+		6FFABA143DE268AE1AD35A6E /* InMemoryTrailNoteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTrailNoteServices.swift; sourceTree = "<group>"; };
+		79075A1270A6B089998E2ECB /* ApiEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEnvelope.swift; sourceTree = "<group>"; };
+		7D1DD377220E2365673B4E64 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		8407005A154BF80011216E55 /* TNShowcaseComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNShowcaseComponents.swift; sourceTree = "<group>"; };
+		8813F63AB85CB0BBBA2A005A /* TrailNoteTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailNoteTab.swift; sourceTree = "<group>"; };
+		8A932008C5AE7A8A320564A2 /* TNColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNColor.swift; sourceTree = "<group>"; };
+		93C6FD4873F9C69CB32D7342 /* SearchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHomeView.swift; sourceTree = "<group>"; };
+		9631DC57FCC8DD1437AEE6E0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9DC76297CEC3CA64508D444B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AC9C680161C6E53B74D0D29B /* AuthorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorProfileView.swift; sourceTree = "<group>"; };
+		ACE04924E9CBBCF7D1F6EBC4 /* TNTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNTypography.swift; sourceTree = "<group>"; };
+		B5BAC18A96FD36F3AE37A6ED /* RemoteTrailNoteServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTrailNoteServices.swift; sourceTree = "<group>"; };
+		BDD83A104C6652C01E1C5313 /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
+		C13D9414ADC88E26EE582C86 /* TNStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNStatusCard.swift; sourceTree = "<group>"; };
+		C79F4F518C9F5CD5FA025A58 /* TNFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNFormatters.swift; sourceTree = "<group>"; };
+		CF25C08151B441C7D9738FE3 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
+		D315E907ACB16A9020840388 /* TNHeroHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNHeroHeader.swift; sourceTree = "<group>"; };
+		D5411DEC62E8B1694D996FA5 /* TrailServiceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailServiceModels.swift; sourceTree = "<group>"; };
+		FD44916D78E6E21E6E3E7C7C /* TrailNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailNetworkClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0BE70CC3201F441CE7651602 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AC9C680161C6E53B74D0D29B /* AuthorProfileView.swift */,
+				CF25C08151B441C7D9738FE3 /* RouteDetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		198091F86EA75B05D1BA94D6 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				8A932008C5AE7A8A320564A2 /* TNColor.swift */,
+				C79F4F518C9F5CD5FA025A58 /* TNFormatters.swift */,
+				D315E907ACB16A9020840388 /* TNHeroHeader.swift */,
+				606471000024E7A077E55922 /* TNMetrics.swift */,
+				36CC8A5AA8B35DE50B752841 /* TNPrimaryButton.swift */,
+				2F7D50E3AF24F32C87378E8D /* TNRouteCard.swift */,
+				8407005A154BF80011216E55 /* TNShowcaseComponents.swift */,
+				C13D9414ADC88E26EE582C86 /* TNStatusCard.swift */,
+				ACE04924E9CBBCF7D1F6EBC4 /* TNTypography.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		19AFBF72F09B9914D76564B8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6DA3D1EADE2A6C8DCFEABDB1 /* Contracts.swift */,
+				65935EFEC034BC89591ABA05 /* Config */,
+				72B9064CC56D8437E2BEB2E3 /* Navigation */,
+				6E1AE87282268EB6C30A2D0B /* Network */,
+				9A8F09A8F75FCC12BD9BD08E /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3B7DE9F63C345DB45A2517B1 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				108447A126C2BACCA7ECDAA3 /* RecordHomeView.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		430602ED276052EB462E3E2A = {
+			isa = PBXGroup;
+			children = (
+				FA98D734BBA544973DB0C07A /* TrailNoteApp */,
+				C85C7B1104A2D74D4779F430 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49D77ED2AEA0D37318429B0D /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				360E71CE445078DD84BBD4B4 /* MineHomeView.swift */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		65935EFEC034BC89591ABA05 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1D7D48BA7C2E77FCB8BE9E80 /* TrailEnvironment.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		68DA2F035C7A1628F63576A2 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				0BE70CC3201F441CE7651602 /* Detail */,
+				DFD3B9A0FA76F1329804FF3B /* Discover */,
+				49D77ED2AEA0D37318429B0D /* Mine */,
+				3B7DE9F63C345DB45A2517B1 /* Record */,
+				C3374E6B9E7F2405D42BE359 /* Search */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6E1AE87282268EB6C30A2D0B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				79075A1270A6B089998E2ECB /* ApiEnvelope.swift */,
+				BDD83A104C6652C01E1C5313 /* NetworkClientError.swift */,
+				7D1DD377220E2365673B4E64 /* NetworkRequest.swift */,
+				FD44916D78E6E21E6E3E7C7C /* TrailNetworkClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		72B9064CC56D8437E2BEB2E3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				8813F63AB85CB0BBBA2A005A /* TrailNoteTab.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		9A8F09A8F75FCC12BD9BD08E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6FFABA143DE268AE1AD35A6E /* InMemoryTrailNoteServices.swift */,
+				B5BAC18A96FD36F3AE37A6ED /* RemoteTrailNoteServices.swift */,
+				5A2A98DCF9C38869A13D2DCC /* TrailNoteServices.swift */,
+				D5411DEC62E8B1694D996FA5 /* TrailServiceModels.swift */,
+				3A52C2AA976FA95891A73B6E /* TrailServiceRegistry.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A8AA145B857B09EC168B6029 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6CF5F35D31931421172B3DB6 /* TrailNoteApp.swift */,
+				376848D36641B78865B6B068 /* TrailNoteRootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C24DAE6E6D766797B15A116A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9DC76297CEC3CA64508D444B /* Info.plist */,
+				9631DC57FCC8DD1437AEE6E0 /* README.md */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C3374E6B9E7F2405D42BE359 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				93C6FD4873F9C69CB32D7342 /* SearchHomeView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C85C7B1104A2D74D4779F430 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D79B55667E59D4983E73032 /* TrailNoteApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFD3B9A0FA76F1329804FF3B /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				6F1AFE2B7AD992D7C0D79E81 /* DiscoverHomeView.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		FA98D734BBA544973DB0C07A /* TrailNoteApp */ = {
+			isa = PBXGroup;
+			children = (
+				A8AA145B857B09EC168B6029 /* App */,
+				19AFBF72F09B9914D76564B8 /* Core */,
+				198091F86EA75B05D1BA94D6 /* DesignSystem */,
+				68DA2F035C7A1628F63576A2 /* Features */,
+				C24DAE6E6D766797B15A116A /* Resources */,
+			);
+			path = TrailNoteApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8269486B762307351295DA4B /* TrailNoteApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46B688F24933CD6BE5B30149 /* Build configuration list for PBXNativeTarget "TrailNoteApp" */;
+			buildPhases = (
+				0362DA3651C642AE7D4F5375 /* Sources */,
+				31299AC910F1CC9D5AA15C6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrailNoteApp;
+			packageProductDependencies = (
+			);
+			productName = TrailNoteApp;
+			productReference = 3D79B55667E59D4983E73032 /* TrailNoteApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B169BF0E12484C2D4FEB0781 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 8EF72BA1A64B47FA338B6168 /* Build configuration list for PBXProject "TrailNoteApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 430602ED276052EB462E3E2A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C85C7B1104A2D74D4779F430 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8269486B762307351295DA4B /* TrailNoteApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31299AC910F1CC9D5AA15C6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD2AF762FCC99E09285D8464 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0362DA3651C642AE7D4F5375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				905ACAB6C396548982D301FD /* ApiEnvelope.swift in Sources */,
+				27369F147BBD6773B5920E6C /* AuthorProfileView.swift in Sources */,
+				30DD90081FFB1D53A20873A8 /* Contracts.swift in Sources */,
+				631A2DB0276E0A6F681C2A25 /* DiscoverHomeView.swift in Sources */,
+				F81FD7DB26DB5B745C0A482C /* InMemoryTrailNoteServices.swift in Sources */,
+				799188D353FCFB3C8C9FE42E /* MineHomeView.swift in Sources */,
+				7CC2D5E586846095C98DCCA2 /* NetworkClientError.swift in Sources */,
+				7FF558D73D783A77F9E2B210 /* NetworkRequest.swift in Sources */,
+				105F4181B0B0571091C41895 /* RecordHomeView.swift in Sources */,
+				C86B14CB4F17E566FE4BB8E6 /* RemoteTrailNoteServices.swift in Sources */,
+				FA56D30AAF467704A51FEC78 /* RouteDetailView.swift in Sources */,
+				8DAAB02290A111B5E9889152 /* SearchHomeView.swift in Sources */,
+				AD34DA45C9C372B48B282AAA /* TNColor.swift in Sources */,
+				C1E4BA8DD9B0C4D9624EEB14 /* TNFormatters.swift in Sources */,
+				B66D103EFE2BFF4D6E3E7FAB /* TNHeroHeader.swift in Sources */,
+				CA9876A13AB6AB254D22DF75 /* TNMetrics.swift in Sources */,
+				CB07BCCD34E8441BB993E80A /* TNPrimaryButton.swift in Sources */,
+				D5401ECD36E350D13F20C24D /* TNRouteCard.swift in Sources */,
+				67213C17A211B7D95A68A58D /* TNShowcaseComponents.swift in Sources */,
+				72CD2EE5F30EE9AA863889A1 /* TNStatusCard.swift in Sources */,
+				D5AC30E562FD8CCEF71FFC38 /* TNTypography.swift in Sources */,
+				F79535FEAA4977B30BE79896 /* TrailEnvironment.swift in Sources */,
+				C3733FB35E4C7CC245DC9C74 /* TrailNetworkClient.swift in Sources */,
+				F8296EA0F1BFAB8381296196 /* TrailNoteApp.swift in Sources */,
+				D0A8CAC0E5B23D4393528A62 /* TrailNoteRootView.swift in Sources */,
+				A45F9C85EBAED071871FBB7F /* TrailNoteServices.swift in Sources */,
+				173296A3EDB57F6D8A2E2751 /* TrailNoteTab.swift in Sources */,
+				B6449670B8CA9FB2557A4A57 /* TrailServiceModels.swift in Sources */,
+				DADD0D01975A280F67618989 /* TrailServiceRegistry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11E758F178942EA32897BF3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		12E76BFEBAE872D6882B72C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TrailNoteApp/Resources/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trailnote.ios;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1E72F531F8AB52E1AF7B0479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = TrailNoteApp/Resources/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trailnote.ios;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7133376EB9C53A901E69BE09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46B688F24933CD6BE5B30149 /* Build configuration list for PBXNativeTarget "TrailNoteApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E72F531F8AB52E1AF7B0479 /* Debug */,
+				12E76BFEBAE872D6882B72C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8EF72BA1A64B47FA338B6168 /* Build configuration list for PBXProject "TrailNoteApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7133376EB9C53A901E69BE09 /* Debug */,
+				11E758F178942EA32897BF3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B169BF0E12484C2D4FEB0781 /* Project object */;
+}
